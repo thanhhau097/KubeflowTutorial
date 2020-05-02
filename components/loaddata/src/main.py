@@ -10,9 +10,9 @@ import boto3
 
 
 parser = argparse.ArgumentParser(description='Load data from datapile')
-parser.add_argument('--input_path', type=str, help='path to data on datapile')
-parser.add_argument('--param', type=int, default=100, help='Parameter 1.')
-parser.add_argument('--output_path', type=str, help='output data path, use for other phase')
+parser.add_argument('--aws_access_key_id', type=str, required=True, help='AWS_ACCESS_KEY.')
+parser.add_argument('--aws_secret_access_key', type=str, required=True, help='AWS_SECRET_KEY')
+parser.add_argument('--output', type=str, help='output data path, use for other phase')
 args = parser.parse_args()
 
 
@@ -26,6 +26,11 @@ def zipdir(path, ziph):
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file))
+
+
+def init_aws_key():
+    os.environ['AWS_ACCESS_KEY_ID'] = args.aws_access_key_id
+    os.environ['AWS_SECRET_ACCESS_KEY'] = args.aws_secret_access_key
 
 
 def load_data():
@@ -42,10 +47,10 @@ def load_data():
 
     # unzip to data folders
     with zipfile.ZipFile(file_name, 'r') as zip_ref:
-        zip_ref.extractall('./data/')
+        zip_ref.extractall(args.output)
 
     # current directory have train/, val/, test/ folder
-    data_folder = './data'
+    data_folder = args.output
     for folder in os.listdir(data_folder):
         with zipfile.ZipFile(os.path.join(data_folder, folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
             zipdir(folder, zipf)
@@ -61,4 +66,5 @@ def load_data():
     #         }
 
 
+init_aws_key()
 load_data()
