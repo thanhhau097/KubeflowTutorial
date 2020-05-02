@@ -1,0 +1,16 @@
+name: Do dummy work
+description: Performs some dummy work.
+inputs:
+- {name: Input 1, type: GCSPath, description: 'Data for Input'}
+- {name: Parameter 1, type: Integer, default: '100', description: 'Parameter 1 description'} # The default values must be specified as YAML strings.
+outputs:
+- {name: Output 1, description: 'Output 1 data'}
+implementation:
+  container:
+    image: dockerhub.io/thanhhau097/loaddata
+    command: [
+      python3, /pipelines/component/src/main.py,
+      --input_path,  {inputPath:  Input 1},
+      --param,       {inputValue: Parameter 1},
+      --output1_path, {outputPath: Output 1},
+    ]
