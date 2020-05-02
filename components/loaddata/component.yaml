@@ -10,7 +10,7 @@ implementation:
     image: dockerhub.io/thanhhau097/loaddata
     command: [
       python3, /pipelines/component/src/main.py,
-      --input_path,  {inputPath:  Input 1},
-      --param,       {inputValue: Parameter 1},
-      --output1_path, {outputPath: Output 1},
+      --input_path,  {inputPath:  Input},
+      --param,       {inputValue: Parameter},
+      --output_path, {outputPath: Output},
     ]
