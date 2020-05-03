@@ -2,7 +2,7 @@ import argparse
 import zipfile
 
 parser = argparse.ArgumentParser(description='Preprocessing data for OCR')
-parser.add_argument('--input_path', type=str, help='input path to data path, including training set and validation set')
+parser.add_argument('--data_path', type=str, help='input path to data path, including training set and validation set')
 parser.add_argument('--output_path', type=str, help='path to store text lines and labels')
 
 args = parser.parse_args()
@@ -80,4 +80,4 @@ def preprocess(dataset_type='train'):
     """
     # with zipfile.ZipFile(os.path.join(args.input_path, dataset_type + '.zip'), 'r') as zip_ref:
     #     zip_ref.extractall(args.output_path)
-    print(os.listdir(args.input_path))
+    print(os.listdir(args.data_path))

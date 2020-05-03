@@ -1,7 +1,7 @@
 name: OCR Preprocess
 description: Performs OCR preprocess
 inputs:
-  - {name: Input Path, description: 'Input Path'}
+  - {name: Data Path, description: 'Input Path'}
 outputs:
   - {name: Output Path, description: 'Output Path'}
 implementation:
@@ -9,6 +9,6 @@ implementation:
     image: dockerhub.io/thanhhau097/loaddata
     command: [
       python3, /pipelines/component/src/main.py,
-      --input_path,  {inputPath: Input Path},
+      --data_path,  {inputValue: Data Path},
       --output_path, {outputPath: Output Path},
     ]
