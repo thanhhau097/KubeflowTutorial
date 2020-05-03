@@ -6,7 +6,7 @@ outputs:
   - {name: Output Path, description: 'Output Path'}
 implementation:
   container:
-    image: dockerhub.io/thanhhau097/loaddata
+    image: index.docker.io/thanhhau097/loaddata
     command: [
       python3, /pipelines/component/src/main.py,
       --data_path,  {inputValue: Data Path},
