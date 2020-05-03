@@ -9,6 +9,6 @@ implementation:
     image: dockerhub.io/thanhhau097/loaddata
     command: [
       python3, /pipelines/component/src/main.py,
-      --input_path,  {inputPath: AWS Access Key Id},
+      --input_path,  {inputPath: Input Path},
       --output_path, {outputPath: Output Path},
     ]
