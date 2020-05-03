@@ -1,5 +1,5 @@
-name: Do dummy work
-description: Performs some dummy work.
+name: Load Data
+description: Performs loading data
 inputs:
   - {name: AWS Access Key Id, description: 'AWS_ACCESS_KEY_ID'}
   - {name: AWS Secret Access Key, description: 'AWS_SECRET_ACCESS_KEY'}
@@ -12,5 +12,5 @@ implementation:
       python3, /pipelines/component/src/main.py,
       --aws_access_key_id,  {inputPath: AWS Access Key Id},
       --aws_secret_access_key, {inputValue: AWS Secret Access Key},
-      --output-path, {outputPath: Output Path},
+      --output_path, {outputPath: Output Path},
     ]
