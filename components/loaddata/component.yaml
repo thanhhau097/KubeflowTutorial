@@ -1,16 +1,16 @@
 name: Do dummy work
 description: Performs some dummy work.
 inputs:
-- {name: Input 1, type: GCSPath, description: 'Data for Input'}
-- {name: Parameter 1, type: Integer, default: '100', description: 'Parameter 1 description'} # The default values must be specified as YAML strings.
+  - {name: AWS Access Key Id, description: 'AWS_ACCESS_KEY_ID'}
+  - {name: AWS Secret Access Key, description: 'AWS_SECRET_ACCESS_KEY'}
 outputs:
-- {name: Output 1, description: 'Output 1 data'}
+  - {name: Output Path, description: 'Output Path'}
 implementation:
   container:
     image: dockerhub.io/thanhhau097/loaddata
     command: [
       python3, /pipelines/component/src/main.py,
       --aws_access_key_id,  {inputPath: AWS Access Key Id},
-      --aws_secret_access_key,       {inputValue: AWS Secret Access Key},
-      --output, {outputPath: Output},
+      --aws_secret_access_key, {inputValue: AWS Secret Access Key},
+      --output-path, {outputPath: Output Path},
     ]
