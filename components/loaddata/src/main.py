@@ -78,11 +78,15 @@ def load_data():
         zip_ref.extractall(data_folder)
 
     # current directory have train/, val/, test/ folder
-    with zipfile.ZipFile(args.output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(data_folder + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
         zipdir(data_folder, zipf)
 
     # push to s3
-    # upload_file()
+    print("Uploading data to s3")
+    bucket = args.output_path[:args.output_path.find('/')]
+    object_name = args.output_path[args.output_path.find('/') + 1:]
+    upload_file(data_folder + '.zip', bucket, object_name)
+    print("Uploaded")
 
     # for folder in os.listdir(data_folder):
     #     with zipfile.ZipFile(os.path.join(data_folder, folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
