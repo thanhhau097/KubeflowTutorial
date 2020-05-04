@@ -3,10 +3,12 @@ Load data from DataPile
 """
 
 import argparse
+import logging
 import os
 import zipfile
 
 import boto3
+from botocore.exceptions import ClientError
 
 parser = argparse.ArgumentParser(description='Load data from datapile')
 parser.add_argument('--aws_access_key_id', type=str, required=True, help='AWS_ACCESS_KEY')
@@ -28,6 +30,29 @@ def zipdir(path, ziph):
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file))
+
+
+def upload_file(file_name, bucket, object_name=None):
+    """Upload a file to an S3 bucket
+
+    :param file_name: File to upload
+    :param bucket: Bucket to upload to
+    :param object_name: S3 object name. If not specified then file_name is used
+    :return: True if file was uploaded, else False
+    """
+
+    # If S3 object_name was not specified, use file_name
+    if object_name is None:
+        object_name = file_name
+
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
 
 
 def init_aws_key():
@@ -55,6 +80,9 @@ def load_data():
     # current directory have train/, val/, test/ folder
     with zipfile.ZipFile(args.output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         zipdir(data_folder, zipf)
+
+    # push to s3
+    # upload_file()
 
     # for folder in os.listdir(data_folder):
     #     with zipfile.ZipFile(os.path.join(data_folder, folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
