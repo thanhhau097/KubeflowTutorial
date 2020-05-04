@@ -6,6 +6,7 @@ import argparse
 import logging
 import os
 import zipfile
+from pathlib import Path
 
 import boto3
 from botocore.exceptions import ClientError
@@ -17,6 +18,7 @@ parser.add_argument('--aws_secret_access_key', type=str, required=True, help='AW
 # otherwise, we should return list of file, one param for each file
 parser.add_argument('--output_path', type=str, help='output data path, use for other phase')
 
+parser.add_argument('--output_path_file', type=str, help='Path to a local file containing the output model URI. Needed for data passing until the artifact support is checked in.') #TODO: Remove after the team agrees to let me check in artifact support.
 args = parser.parse_args()
 
 
@@ -101,6 +103,8 @@ def load_data():
     #             'val': 'data/val.zip'
     #             'test': 'data/test.zip'
     #         }
+    Path(args.output_path_file).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.output_path_file).write_text(args.output_path)
 
 
 def process():
