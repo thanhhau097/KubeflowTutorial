@@ -14,6 +14,5 @@ implementation:
       --aws_access_key_id,  {inputValue: AWS Access Key Id},
       --aws_secret_access_key, {inputValue: AWS Secret Access Key},
       --output_path, {inputValue: Output Path},
-
       --output_path_file, {outputPath: Output Path File},
     ]
