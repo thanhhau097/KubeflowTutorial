@@ -1,7 +1,5 @@
 import argparse
 
-from kfp.components import InputPath
-
 parser = argparse.ArgumentParser(description='Preprocessing data for OCR')
 parser.add_argument('--input_path', type=str,
                     help='input path to data path, including training set and validation set')
