@@ -11,6 +11,10 @@ def create_ocr_preprocess_component():
     return component
 
 
+@kfp.dsl.pipeline(
+  name='My pipeline',
+  description='My machine learning pipeline'
+)
 def pipeline():
     load_data_component = create_load_data_component()
     load_data_task = load_data_component(
@@ -26,4 +30,8 @@ def pipeline():
     )
 
 
-kfp.Client().create_run_from_pipeline_func(pipeline, arguments={})
+# kfp.Client().create_run_from_pipeline_func(pipeline, arguments={})
+kfp.compiler.Compiler().compile(pipeline, 'my-pipeline.zip')
+client = kfp.Client()
+my_experiment = client.create_experiment(name='demo')
+my_run = client.run_pipeline(my_experiment.id, 'my-pipeline', 'my-pipeline.zip')
