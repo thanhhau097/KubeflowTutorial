@@ -28,7 +28,7 @@ def pipeline():
     ocr_preprocess_component = create_ocr_preprocess_component()
     # print("load_data_task.outputs['output_path']", load_data_task.outputs['output_path'])
     ocr_preprocess_task = ocr_preprocess_component(
-        input_path=load_data_task.outputs['output_path'],
+        input_path=load_data_task.outputs['output_path_file'],
     )
 
 
