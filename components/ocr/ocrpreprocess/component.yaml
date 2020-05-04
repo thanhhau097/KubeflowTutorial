@@ -6,7 +6,7 @@ outputs:
   - {name: Output Path, description: 'Output Path'}
 implementation:
   container:
-    image: index.docker.io/thanhhau097/loaddata
+    image: index.docker.io/thanhhau097/ocrpreprocess
     command: [
       python3, /pipelines/component/src/main.py,
       --input_path,  {inputPath: Input Path},
