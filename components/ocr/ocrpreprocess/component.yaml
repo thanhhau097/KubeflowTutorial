@@ -1,7 +1,11 @@
 name: OCR Preprocess
 description: Performs OCR preprocess
 inputs:
-  - {name: Input Path, description: 'Input Path'}
+  - {name: Data Path, description: 'Data Path'}
+  - {name: AWS Access Key Id, description: 'AWS_ACCESS_KEY_ID'}
+  - {name: AWS Secret Access Key, description: 'AWS_SECRET_ACCESS_KEY'}
+  - {name: Output Path, type: String, description: 'Output Path'}
+  outputs:
 outputs:
   - {name: Output Path, description: 'Output Path'}
 implementation:
@@ -9,6 +13,9 @@ implementation:
     image: index.docker.io/thanhhau097/ocrpreprocess
     command: [
       python3, /pipelines/component/src/main.py,
-      --input_path,  {inputValue: Input Path},
-      --output_path, {outputPath: Output Path},
+      --data_path,  {inputValue: Data Path},
+      --aws_access_key_id,  {inputValue: AWS Access Key Id},
+      --aws_secret_access_key, {inputValue: AWS Secret Access Key},
+      --output_path, {inputValue: Output Path},
+      --output_path_file, {outputPath: Output Path},
     ]
