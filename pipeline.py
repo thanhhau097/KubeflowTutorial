@@ -26,7 +26,7 @@ def pipeline():
 
     # output_path of load data component must be same as input_path of ocr preprocess component
     ocr_preprocess_component = create_ocr_preprocess_component()
-    print("load_data_task.outputs['output_path']", load_data_task.outputs['output_path'])
+    # print("load_data_task.outputs['output_path']", load_data_task.outputs['output_path'])
     ocr_preprocess_task = ocr_preprocess_component(
         input_path=load_data_task.outputs['output_path'],
     )
