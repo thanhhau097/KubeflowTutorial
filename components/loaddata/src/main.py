@@ -71,5 +71,9 @@ def load_data():
     #         }
 
 
-init_aws_key()
-load_data()
+def process():
+    init_aws_key()
+    load_data()
+
+
+process()
