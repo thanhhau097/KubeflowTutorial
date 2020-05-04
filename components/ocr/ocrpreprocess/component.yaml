@@ -9,6 +9,6 @@ implementation:
     image: index.docker.io/thanhhau097/ocrpreprocess
     command: [
       python3, /pipelines/component/src/main.py,
-      --input_path,  {inputPath: Input Path},
+      --input_path,  {inputValue: Input Path},
       --output_path, {outputPath: Output Path},
     ]
