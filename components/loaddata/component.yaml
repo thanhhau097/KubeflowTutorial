@@ -5,7 +5,7 @@ inputs:
   - {name: AWS Secret Access Key, description: 'AWS_SECRET_ACCESS_KEY'}
   - {name: Output Path, type: String, description: 'Output Path'}
 outputs:
-  - {name: Output Path, type: String, description: 'Output Path'}
+  - {name: Output Path File, type: String, description: 'Output Path'}
 implementation:
   container:
     image: index.docker.io/thanhhau097/loaddata
@@ -15,5 +15,5 @@ implementation:
       --aws_secret_access_key, {inputValue: AWS Secret Access Key},
       --output_path, {inputValue: Output Path},
 
-      --output_path_file, {outputPath: Output Path},
+      --output_path_file, {outputPath: Output Path File},
     ]
