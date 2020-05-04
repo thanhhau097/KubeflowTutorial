@@ -3,7 +3,7 @@ import argparse
 from kfp.components import InputPath
 
 parser = argparse.ArgumentParser(description='Preprocessing data for OCR')
-parser.add_argument('--input_path', type=InputPath,
+parser.add_argument('--input_path', type=str,
                     help='input path to data path, including training set and validation set')
 parser.add_argument('--output_path', type=str, help='path to store text lines and labels')
 
