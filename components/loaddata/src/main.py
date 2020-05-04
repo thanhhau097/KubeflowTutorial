@@ -48,12 +48,12 @@ def load_data():
     s3.download_file('scsk-data', 'lionel/daiichi4/daiichi.zip', file_name)
 
     # unzip to data folders
+    data_folder = 'data'
     with zipfile.ZipFile(file_name, 'r') as zip_ref:
-        zip_ref.extractall(args.output_path)
+        zip_ref.extractall(data_folder)
 
     # current directory have train/, val/, test/ folder
-    data_folder = args.output_path
-    with zipfile.ZipFile(os.path.join(data_folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(args.output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         zipdir(data_folder, zipf)
 
     # for folder in os.listdir(data_folder):
