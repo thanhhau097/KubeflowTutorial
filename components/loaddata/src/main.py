@@ -13,7 +13,7 @@ parser.add_argument('--aws_access_key_id', type=str, required=True, help='AWS_AC
 parser.add_argument('--aws_secret_access_key', type=str, required=True, help='AWS_SECRET_KEY')
 # TODO: not sure that can output a folder, need to check
 # otherwise, we should return list of file, one param for each file
-parser.add_argument('--output_path', type=str, default='data', help='output data path, use for other phase')
+parser.add_argument('--output_path', type=str, help='output data path, use for other phase')
 
 args = parser.parse_args()
 
