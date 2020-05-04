@@ -1,7 +1,7 @@
 name: OCR Preprocess
 description: Performs OCR preprocess
 inputs:
-  - {name: Input Path, description: 'Input Path'}
+  - {name: Input Path, type: LocalPath, description: 'Input Path'}
 outputs:
   - {name: Output Path, description: 'Output Path'}
 implementation:
