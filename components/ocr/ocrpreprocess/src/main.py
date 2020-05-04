@@ -112,9 +112,12 @@ def get_data(image_dir, label_dir, save_dir, color=True):
                 img_cell = image[y: y + height, x: x + width]
 
                 image_name = os.path.join(text_lines_dir, label_path.split('.')[0] + '_' + str(i) + '.png')
-                cv2.imwrite(image_name, img_cell)
+                try:
+                    cv2.imwrite(image_name, img_cell)
 
-                data.append({'image': image_name, 'label': label})
+                    data.append({'image': image_name, 'label': label})
+                except:
+                    continue
 
         with open(os.path.join(save_dir, 'data.json'), 'w') as f:
             json.dump(data, f)
