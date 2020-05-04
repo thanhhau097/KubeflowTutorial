@@ -147,10 +147,12 @@ def process():
 
     print("Unzip files ...")
     with zipfile.ZipFile(file_name, 'r') as zip_ref:
-        zip_ref.extractall(unzip_folder)
+        zip_ref.extractall('./')
 
     print("start preprocessing data for ocr")
     for folder in os.listdir(unzip_folder):
+        if folder == '__MACOSX':
+            continue
         preprocess(unzip_folder, dataset_type=folder)
 
     # zip folder and upload
@@ -158,6 +160,7 @@ def process():
     # current directory have train/, val/, test/ folder
     with zipfile.ZipFile(unzip_folder + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
         zipdir(unzip_folder, zipf)
+
     print("Uploading data to s3")
     bucket = args.output_path[:args.output_path.find('/')]
     object_name = args.output_path[args.output_path.find('/') + 1:]

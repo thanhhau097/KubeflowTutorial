@@ -28,10 +28,10 @@ def pipeline():
     ocr_preprocess_component = create_ocr_preprocess_component()
     # print("load_data_task.outputs['output_path']", load_data_task.outputs['output_path'])
     ocr_preprocess_task = ocr_preprocess_component(
-        data_path=load_data_task.outputs['output_path_file'],
+        data_path=load_data_task.outputs['output_path'],
         aws_access_key_id='AKIAXYIULNYY2WOJ2FLD',
         aws_secret_access_key='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',
-        output_path='scsk-data/lionel/preprocess/data.zip'
+        output_path='scsk-data/lionel/ocrpreprocess/data.zip'
     )
 
 
