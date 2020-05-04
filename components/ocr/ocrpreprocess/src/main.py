@@ -74,7 +74,7 @@ def get_data(image_dir, label_dir, save_dir, color=True):
         os.makedirs(text_lines_dir)
 
     for label_path in tqdm(label_files):
-        with open(label_path, 'rb', encoding='utf-8') as f:
+        with open(label_path, 'r', encoding='utf-8') as f:
             data_dict = json.load(f)
             image_name = data_dict.get("file_name", None)
             attributes = data_dict.get("attributes", None)
