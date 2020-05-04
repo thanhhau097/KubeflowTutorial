@@ -67,13 +67,13 @@ def load_data():
 
     :return:
     """
-    file_name = 'filedata.zip'
+    file_name = 'data.zip'
 
     s3 = boto3.client('s3')
     s3.download_file('scsk-data', 'lionel/daiichi4/daiichi.zip', file_name)
 
     # unzip to data folders
-    data_folder = 'dirdata'
+    data_folder = 'data'
     with zipfile.ZipFile(file_name, 'r') as zip_ref:
         zip_ref.extractall(data_folder)
 
