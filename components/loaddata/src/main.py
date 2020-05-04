@@ -52,7 +52,10 @@ def load_data():
         zip_ref.extractall(args.output_path)
 
     # current directory have train/, val/, test/ folder
-    # data_folder = args.output_path
+    data_folder = args.output_path
+    with zipfile.ZipFile(os.path.join(data_folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
+        zipdir(data_folder, zipf)
+
     # for folder in os.listdir(data_folder):
     #     with zipfile.ZipFile(os.path.join(data_folder, folder + '.zip'), 'w', zipfile.ZIP_DEFLATED) as zipf:
     #         zipdir(folder, zipf)
