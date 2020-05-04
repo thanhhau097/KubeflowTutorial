@@ -134,7 +134,7 @@ def preprocess(root_folder, dataset_type):
     """
     print("preprocess for {}".format(dataset_type))
     images_folder = os.path.join(root_folder, dataset_type, 'images')
-    labels_folder = os.path.join(root_folder, dataset_type, 'images')
+    labels_folder = os.path.join(root_folder, dataset_type, 'labels')
     get_data(images_folder, labels_folder, save_dir=dataset_type)
 
 
