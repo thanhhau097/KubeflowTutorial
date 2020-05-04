@@ -21,6 +21,7 @@ def pipeline():
         # Input name "Input 1" is converted to pythonic parameter name "input_1" # note the converted name here
         aws_access_key_id='AKIAXYIULNYY2WOJ2FLD',
         aws_secret_access_key='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',
+        output_path='lala'
     )
 
     # output_path of load data component must be same as input_path of ocr preprocess component
