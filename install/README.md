@@ -21,11 +21,7 @@ sudo usermod -aG docker $USER
 sudo systemctl restart docker
 ```
 - relogin to instance
-```
-minikube start --driver=docker --cpus=4 --memory=14g
-```
 
-or
 ```
 sudo apt install conntrack
 sudo minikube start --driver=none
